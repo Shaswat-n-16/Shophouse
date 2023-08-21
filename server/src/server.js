@@ -1,10 +1,19 @@
-const express = require("express");
-const color = require("colors");
+import express from "express";
+import colors from "colors";
+import dotenv from "dotenv";
+import morgan from "morgan";
+import { connectDB } from "./utils/db.utils.js";
+dotenv.config();
+
 const app = express();
-const PORT = 8080;
+app.use(express.json());
+
+connectDB();
+
+const PORT = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
-  res.send({ message: "welcome to shophouse app" });
+  res.send("welcome to shophouse ecommerce app");
 });
 
 app.listen(PORT, () => {
