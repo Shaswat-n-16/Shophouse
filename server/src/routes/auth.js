@@ -1,6 +1,11 @@
 import Router from "express";
 import { body } from "express-validator";
-import { signup, login } from "../controllers/authcontroller.js";
+import {
+  signup,
+  login,
+  testController,
+} from "../controllers/authcontroller.js";
+import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 const router = Router();
 
 router.post(
@@ -18,5 +23,7 @@ router.post(
   body("password").trim().isLength({ min: 5 }),
   login
 );
+
+router.get("/test", requireSignIn, isAdmin, testController);
 
 export default router;
