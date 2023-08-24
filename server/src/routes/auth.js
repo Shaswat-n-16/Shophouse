@@ -3,7 +3,7 @@ import { body } from "express-validator";
 import {
   signup,
   login,
-  testController,
+  forgotPassword,
 } from "../controllers/authcontroller.js";
 import { isAdmin, requireSignIn } from "../middlewares/authMiddleware.js";
 const router = Router();
@@ -24,6 +24,10 @@ router.post(
   login
 );
 
-router.get("/test", requireSignIn, isAdmin, testController);
+router.post("/forgot-password", forgotPassword);
+
+router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
 
 export default router;

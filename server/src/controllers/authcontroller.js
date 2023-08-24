@@ -9,7 +9,7 @@ export const signup = async (req, res) => {
     if (existingUser) {
       res.status(400).json({
         message: "User Already exists",
-        succces: false,
+        success: false,
       });
     }
     const hashedpassword = await hashPassword(password);
@@ -19,16 +19,16 @@ export const signup = async (req, res) => {
       email,
       password: hashedpassword,
     });
-    res.status(201).json({
+    return res.status(201).json({
       message: "User created Successfully ",
-      succces: true,
+      success: true,
       user,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       message: " Server Error",
-      succces: false,
+      success: false,
       error,
     });
   }
@@ -41,14 +41,14 @@ export const login = async (req, res) => {
     if (!user) {
       res.status(400).json({
         message: "User Doesn't exists",
-        succces: false,
+        success: false,
       });
     }
     const isMatch = comparePassword(password, user.password);
     if (!isMatch) {
       res.status(400).json({
         message: "Wrong Password",
-        succces: false,
+        success: false,
       });
     }
     const token = await JWT.sign(
@@ -58,7 +58,7 @@ export const login = async (req, res) => {
     );
     res.status(201).json({
       message: "Logged in Successfully ",
-      succces: true,
+      success: true,
       user: {
         firstName: user.firstName,
         lastName: user.lastName,
@@ -70,12 +70,21 @@ export const login = async (req, res) => {
     console.log(error);
     res.status(500).json({
       message: " Server Error",
-      succces: false,
+      success: false,
       error,
     });
   }
 };
 
-export const testController = async (req, res) => {
-  res.send("protected routes");
+export const forgotPassword = async (req, res) => {
+  try {
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Something went wrong",
+      success: false,
+      error,
+      s,
+    });
+  }
 };
