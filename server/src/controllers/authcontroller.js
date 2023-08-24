@@ -4,7 +4,7 @@ import JWT from "jsonwebtoken";
 
 export const signup = async (req, res) => {
   try {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, answer } = req.body;
     const existingUser = await userSchema.findOne({ email });
     if (existingUser) {
       res.status(400).json({
@@ -18,6 +18,7 @@ export const signup = async (req, res) => {
       lastName,
       email,
       password: hashedpassword,
+      answer,
     });
     return res.status(201).json({
       message: "User created Successfully ",
@@ -63,6 +64,7 @@ export const login = async (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        role: user.role,
       },
       token,
     });
@@ -78,13 +80,27 @@ export const login = async (req, res) => {
 
 export const forgotPassword = async (req, res) => {
   try {
+    const { email, answer, newPassword } = req.body;
+    const user = await userSchema.findOne({ email, answer });
+    //validation
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "Wrong Email Or Answer",
+      });
+    }
+    const hashed = await hashPassword(newPassword);
+    await userSchema.findByIdAndUpdate(user._id, { password: hashed });
+    res.status(200).send({
+      success: true,
+      message: "Password Reset Successfully",
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       message: "Something went wrong",
       success: false,
       error,
-      s,
     });
   }
 };

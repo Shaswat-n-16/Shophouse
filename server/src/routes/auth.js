@@ -24,9 +24,18 @@ router.post(
   login
 );
 
-router.post("/forgot-password", forgotPassword);
-
+router.post(
+  "/forgot-password",
+  body("email").isEmail().withMessage("Please enter your email."),
+  body("password").trim().isLength({ min: 5 }),
+  forgotPassword
+);
+//user route
 router.get("/user-auth", requireSignIn, (req, res) => {
+  res.status(200).send({ ok: true });
+});
+//admin route
+router.get("/admin-auth", requireSignIn, isAdmin, (req, res) => {
   res.status(200).send({ ok: true });
 });
 
