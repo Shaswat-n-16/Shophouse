@@ -6,6 +6,7 @@ import axios from "axios";
 import { connectDB } from "./utils/db.utils.js";
 import authRoutes from "./routes/auth.js";
 import categoryRoutes from "./routes/category.js";
+import productRoutes from "./routes/product.js";
 import cors from "cors";
 dotenv.config();
 
@@ -20,6 +21,8 @@ app.use(morgan("dev"));
 const PORT = process.env.PORT || 8080;
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/category", categoryRoutes);
+app.use("/api/v1/product", productRoutes);
+
 app.get("/", (req, res) => {
   res.send("welcome to shophouse ecommerce app");
 });
