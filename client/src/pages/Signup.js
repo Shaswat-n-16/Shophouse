@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 const Signup = () => {
   const [firstName, setFname] = useState("");
   const [lastName, setLname] = useState("");

@@ -36,3 +36,7 @@ font-family: 'Poppins', sans-serif; */
   flex-direction: column;
   height: 70vh;
 }
+.product-link {
+  text-decoration: none !important;
+  color: black !important;
+}
