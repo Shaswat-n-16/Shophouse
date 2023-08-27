@@ -1,4 +1,5 @@
 import productSchema from "../db/productSchema.js";
+import categorySchema from "../db/categorySchema.js";
 import fs from "fs";
 import slugify from "slugify";
 
@@ -221,7 +222,7 @@ export const productCount = async (req, res) => {
 // product list base on page
 export const productList = async (req, res) => {
   try {
-    const perPage = 2;
+    const perPage = 6;
     const page = req.params.page ? req.params.page : 1;
     const products = await productSchema
       .find({})
@@ -238,6 +239,73 @@ export const productList = async (req, res) => {
     res.status(400).send({
       success: false,
       message: "error in per page ctrl",
+      error,
+    });
+  }
+};
+
+export const searchProduct = async (req, res) => {
+  try {
+    const { keyword } = req.params;
+    const resutls = await productSchema
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: "i" } },
+          { description: { $regex: keyword, $options: "i" } },
+        ],
+      })
+      .select("-photo");
+    res.json(resutls);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error In Search Product API",
+      error,
+    });
+  }
+};
+
+export const relatedProduct = async (req, res) => {
+  try {
+    const { pid, cid } = req.params;
+    const products = await productSchema
+      .find({
+        category: cid,
+        _id: { $ne: pid },
+      })
+      .select("-photo")
+      .limit(3)
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "error while geting related product",
+      error,
+    });
+  }
+};
+
+export const productCategory = async (req, res) => {
+  try {
+    const category = await categorySchema.findOne({ slug: req.params.slug });
+    const products = await productSchema
+      .find({ category })
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      category,
+      products,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error in fetching product details",
+      success: true,
       error,
     });
   }

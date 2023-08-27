@@ -1,10 +1,13 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { GiShoppingBag } from "react-icons/gi";
 import { useAuth } from "../../context/auth";
+import { GiShoppingBag } from "react-icons/gi";
 import toast from "react-hot-toast";
-export const Header = () => {
+import SearchInput from "../Form/SearchInput";
+import useCategory from "../../hooks/useCategory";
+const Header = () => {
   const [auth, setAuth] = useAuth();
+  const categories = useCategory();
   const handleLogout = () => {
     setAuth({
       ...auth,
@@ -35,22 +38,44 @@ export const Header = () => {
               <GiShoppingBag />
             </Link>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <SearchInput />
               <li className="nav-item">
-                <NavLink to="/" className="nav-link">
+                <NavLink to="/" className="nav-link ">
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/category" className="nav-link">
-                  category
-                </NavLink>
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={"/categories"}
+                  data-bs-toggle="dropdown"
+                >
+                  Categories
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    <Link className="dropdown-item" to={"/categories"}>
+                      All Categories
+                    </Link>
+                  </li>
+                  {categories?.map((c) => (
+                    <li>
+                      <Link
+                        className="dropdown-item"
+                        to={`/category/${c.slug}`}
+                      >
+                        {c.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
-              {!auth.user ? (
+
+              {!auth?.user ? (
                 <>
-                  {" "}
                   <li className="nav-item">
-                    <NavLink to="/signup" className="nav-link">
-                      Signup
+                    <NavLink to="/register" className="nav-link">
+                      Register
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -67,7 +92,7 @@ export const Header = () => {
                       href="#"
                       role="button"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      style={{ border: "none" }}
                     >
                       {auth?.user?.firstName}
                     </NavLink>
@@ -107,3 +132,5 @@ export const Header = () => {
     </>
   );
 };
+
+export default Header;
