@@ -128,24 +128,30 @@ const HomePage = () => {
         <div className="col-md-3">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
-            {categories?.map((c) => (
-              <Checkbox
-                key={c._id}
-                onChange={(e) => handleFilter(e.target.checked, c._id)}
-              >
-                {c.name}
-              </Checkbox>
-            ))}
+            <ul className="list-group">
+              {categories?.map((c) => (
+                <li className="list-group-item">
+                  <Checkbox
+                    key={c._id}
+                    onChange={(e) => handleFilter(e.target.checked, c._id)}
+                  >
+                    {c.name}
+                  </Checkbox>
+                </li>
+              ))}
+            </ul>
           </div>
           <h4 className="text-center mt-4">Filter By Price</h4>
           <div className="d-flex flex-column">
-            <Radio.Group onChange={(e) => setRadio(e.target.value)}>
-              {Prices?.map((p) => (
-                <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
-                </div>
-              ))}
-            </Radio.Group>
+            <ul className="list-group">
+              <Radio.Group onChange={(e) => setRadio(e.target.value)}>
+                {Prices?.map((p) => (
+                  <li className="list-group-item" key={p._id}>
+                    <Radio value={p.array}>{p.name}</Radio>
+                  </li>
+                ))}
+              </Radio.Group>
+            </ul>
           </div>
           <div className="d-flex flex-column">
             <button

@@ -39,8 +39,10 @@ const Header = () => {
               Shophouse
               <GiShoppingBag />
             </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <div className="ms-auto">
               <SearchInput />
+            </div>
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link ">
                   Home

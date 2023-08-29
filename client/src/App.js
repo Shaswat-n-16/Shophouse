@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Policies from "./pages/Policies";
+
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/user/Dashboard";
@@ -48,9 +46,6 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/policies" element={<Policies />} />
       </Routes>
     </>
   );
