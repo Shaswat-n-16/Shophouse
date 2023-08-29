@@ -3,6 +3,7 @@ import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
+import "../components/styles/AuthStyle.css";
 import { useAuth } from "../context/auth";
 
 const Login = () => {
@@ -38,7 +39,7 @@ const Login = () => {
   };
   return (
     <Layout title="Register - Ecommer App">
-      <div className="login " style={{ minHeight: "70vh" }}>
+      <div className="form-container " style={{ minHeight: "80vh" }}>
         <form onSubmit={handleSubmit}>
           <h4 className="title">LOGIN FORM</h4>
 

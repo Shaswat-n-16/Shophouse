@@ -13,9 +13,10 @@ const Dashboard = () => {
           </div>
           <div className="col-md-9">
             <div className="card w-75 p-3">
-              <h3>{auth?.user?.firstName}</h3>
-              <h3>{auth?.user?.lastName}</h3>
-              <h3>{auth?.user?.email}</h3>
+              <h3>First Name:{auth?.user?.firstName}</h3>
+              <h3>Last Name:{auth?.user?.lastName}</h3>
+              <h3>Email:{auth?.user?.email}</h3>
+              <h3>Address:{auth?.user?.address}</h3>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Layout from "../components/Layout/Layout";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import "../components/styles/AuthStyle.css";
 import toast from "react-hot-toast";
 const Signup = () => {
   const [firstName, setFname] = useState("");
@@ -39,7 +40,7 @@ const Signup = () => {
 
   return (
     <Layout>
-      <div className="signup">
+      <div className="form-container " style={{ minHeight: "90vh" }}>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="firstnameinput" className="form-label">
@@ -69,11 +70,12 @@ const Signup = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="InputEmail" className="form-label">
-              Enter Your Email
+              Email
             </label>
             <input
               type="email"
               value={email}
+              autoFocus
               onChange={(e) => setEmail(e.target.value)}
               className="form-control"
               id="exampleInputEmail1"
@@ -103,10 +105,12 @@ const Signup = () => {
               onChange={(e) => setAnswer(e.target.value)}
               className="form-control"
               id="answerInput"
+              placeholder="What is your pet name?"
               required
             />
           </div>
           <Link to="/login">Already have an Account</Link>
+          <hr />
           <button type="submit" className="btn btn-primary ">
             Submit
           </button>
