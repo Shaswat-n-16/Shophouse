@@ -26,7 +26,10 @@ export const createProduct = async (req, res) => {
           .send({ error: "Photo is Required and should be less then 1mb" });
     }
 
-    const products = new productSchema({ ...req.fields, slug: slugify(name) });
+    const products = await productSchema.create({
+      ...req.fields,
+      slug: slugify(name),
+    });
     if (photo) {
       products.photo.data = fs.readFileSync(photo.path);
       products.photo.contentType = photo.type;
