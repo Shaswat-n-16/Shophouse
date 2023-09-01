@@ -1,6 +1,6 @@
 <strong><h1>ShopHouse  - MERN Stack eCommerce Website</h1></strong>
 
-<p>Welcome to ShopHouse Perfumes, your one-stop destination for high-quality perfumes. ShopHouse Perfumes is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) eCommerce website designed to provide an exceptional online shopping experience for perfume enthusiasts. This README.md file provides essential information for developers, administrators, and users to get started with the website.</p>
+<p>Welcome to ShopHouse , your one-stop destination for high-quality perfumes. ShopHouse is a full-stack MERN (MongoDB, Express.js, React.js, Node.js) eCommerce website designed to provide an exceptional online shopping experience for perfume enthusiasts. This README.md file provides essential information for developers, administrators, and users to get started with the website.</p>
 
 <strong>
 <h3>Table of Contents</h3>
@@ -47,3 +47,47 @@
 <li>Bcrypt: Password hashing for user security.</li>
 	
 </ul>
+<h2>Installation</h2>
+<p>Follow these steps to set up a development environment and run ShopHouse Perfumes locally:</p>
+<dl>
+	<dt>Clone the repository:</dt>
+	<dd>git clone https://github.com/Shaswat-n-16/Shophouse.git</dd>
+	<dt>Navigate to the project directory:</dt>
+	<dd>cd shophouse</dd>
+	<dt>Install the server dependencies:</dt>
+	<dd>cd server</dd>
+	<dd>npm install</dd>
+	<dt>Install the client dependencies:</dt>
+	<dd>cd ../client</dd>
+	<dd>npm install</dd>
+</dl>
+
+
+
+<h2>Configuration</h2>
+<p>Before running the application, you need to configure certain settings:</p>
+<dl>
+<dt>Database Configuration:</dt>
+
+<dd>Create a MongoDB database and update the connection string in the server/utils/db.util.js file.</dd>
+<dt>JWT Secret Key:</dt>
+
+<dd>Generate a secret key for JWT token signing and update it in the server/utils/auth.util.js file.</dd>
+
+<dt>Environment Variables:</dt>
+
+<dd>Create a .env file in the server directory and add the necessary environment variables.</dd>
+
+</dl>
+<h2>Usage</h2>
+<ol>
+	<li>Start the server</li>
+	<p>cd server</p>
+	<p>npm start</p>
+	<li>Start the client</li>
+	<p>cd ../client</p>
+	<p>npm start</p>
+	<li>Access the application in your web browser at http://localhost:3000.</li>
+</ol>
+<br>
+<p>Thank you for choosing ShopHouse Perfumes. If you have any questions or need assistance, please contact us at <u>shaswat16nandan@gmail.com</u>. Happy shopping!</p>
