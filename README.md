@@ -83,7 +83,7 @@
 <ol>
 	<li>Start the server</li>
 	<p>cd server</p>
-	<p>npm start</p>
+	<p>npm start server</p>
 	<li>Start the client</li>
 	<p>cd ../client</p>
 	<p>npm start</p>
